@@ -1,1 +1,2 @@
-# waa-labs
+# Web Application Architecture
+## Labs
