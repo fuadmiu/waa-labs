@@ -33,6 +33,12 @@ public class UserController {
         return userService.findUserPosts(id);
     }
 
+    @GetMapping("/multiposts")
+    @ResponseStatus(HttpStatus.OK)
+    public List<UserDto> getUsersWithMultiplePosts() {
+        return userService.findUsersWithMultiplePosts();
+    }
+
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
     public void save(@RequestBody UserDto user) {

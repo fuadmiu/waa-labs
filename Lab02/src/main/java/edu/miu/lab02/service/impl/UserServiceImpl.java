@@ -42,6 +42,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<UserDto> findUsersWithMultiplePosts() {
+        List<User> usersWithMultiplePosts = userRepo.findUsersWithMultiplePosts();
+        return usersWithMultiplePosts.stream()
+                .map((u -> modelMapper.map(u, UserDto.class)))
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public void deleteById(long id) {
         userRepo.deleteById(id);
     }

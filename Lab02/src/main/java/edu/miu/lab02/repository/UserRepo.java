@@ -14,4 +14,7 @@ public interface UserRepo extends JpaRepository<User, Long> {
 
     @Query(value = "SELECT u.posts from User u WHERE u.id = :id")
     List<Post> findPosts(long id);
+
+    @Query(value = "SELECT u FROM User u WHERE u.posts.size > 1")
+    List<User> findUsersWithMultiplePosts();
 }
