@@ -1,6 +1,7 @@
 package edu.miu.lab04.controller;
 
 import edu.miu.lab04.aspect.annotation.ExecutionTime;
+import edu.miu.lab04.aspect.annotation.Log;
 import edu.miu.lab04.domain.dto.response.PostDto;
 import edu.miu.lab04.domain.dto.response.UserDto;
 import edu.miu.lab04.service.UserService;
@@ -16,6 +17,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Log
     @GetMapping("/")
     @ResponseStatus(HttpStatus.OK)
     public List<UserDto> getUsers() {
