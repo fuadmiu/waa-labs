@@ -1,8 +1,8 @@
-package edu.miu.lab04.repository;
+package edu.miu.lab05.repository;
 
-import edu.miu.lab04.domain.Comment;
-import edu.miu.lab04.domain.Post;
-import edu.miu.lab04.domain.dto.response.PostDto;
+import edu.miu.lab05.domain.Comment;
+import edu.miu.lab05.domain.Post;
+import edu.miu.lab05.domain.dto.response.PostDto;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

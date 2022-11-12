@@ -1,5 +1,6 @@
-package edu.miu.lab04.domain;
+package edu.miu.lab05.domain;
 
+import edu.miu.lab05.domain.Comment;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,15 +12,13 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "UserTbl")
-public class User {
+public class Post {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String name;
-    @OneToOne(mappedBy = "user")
-    @JoinColumn
-    private Address address;
+    private String title;
+    private String content;
+    private String author;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private List<Post> posts;
+    @JoinColumn(name = "post_id")
+    List<Comment> comments;
 }
