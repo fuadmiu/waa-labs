@@ -40,10 +40,23 @@ public class JwtFilter extends OncePerRequestFilter {
             token = authorizationHeader.substring(7);
             try{
                 email = jwtUtil.getUsernameFromToken(token);
-            }catch (ExpiredJwtException e){ // TODO come back here!
-                String isRefreshToken = request.getHeader("isRefreshToken");
+            } catch (ExpiredJwtException e) {
+                System.out.println("JWT is expired now try refresh token");
+                String isRefreshToken=request.getHeader("refreshToken");
+                if(isRefreshToken!=null){
+                    try{
+                        email= jwtUtil.getUsernameFromToken(isRefreshToken);
+                        System.out.println("In Refresh part");
+                        var userDetails=userDetailsService.loadUserByUsername(email);
+                        token= jwtUtil.generateToken(userDetails);
+                        var refreshToken=jwtUtil.generateRefreshToken(userDetails.getUsername());
+                        response.setHeader("refreshToken",refreshToken);
+                        response.setHeader("accessToken",token);
+                    } catch (ExpiredJwtException ex){
+                        System.out.println("Refresh token is also expired"+ex.getMessage());
+                    }
+                }
             }
-
         }
 
         if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {

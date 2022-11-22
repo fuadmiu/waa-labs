@@ -69,4 +69,15 @@ public class PostServiceImpl implements PostService {
                 .map(p -> modelMapper.map(p, PostDto.class))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public void update(long id, PostDto post) {
+        Post postToUpdate = postRepo.findById(id);
+        if (postToUpdate !=null ){
+            postToUpdate.setTitle(post.getTitle());
+            postToUpdate.setAuthor(post.getAuthor());
+            postToUpdate.setContent(post.getContent());
+        }
+        postRepo.save(postToUpdate);
+    }
 }

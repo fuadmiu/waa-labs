@@ -43,7 +43,6 @@ public class JwtFilter extends OncePerRequestFilter {
             }catch (ExpiredJwtException e){ // TODO come back here!
                 String isRefreshToken = request.getHeader("isRefreshToken");
             }
-
         }
 
         if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {

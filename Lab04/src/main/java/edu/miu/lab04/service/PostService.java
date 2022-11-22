@@ -19,4 +19,6 @@ public interface PostService {
     List<CommentDto> getComments(long postId);
 
     List<PostDto> findByTitleLike(String title);
+
+    void update(long id, PostDto post);
 }
